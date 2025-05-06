@@ -1,0 +1,44 @@
+<div class="form-container">
+  <h2>Cadastro</h2>
+  <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="nome">Nome:</label>
+      <input id="nome" formControlName="nome" />
+      <div *ngIf="cadastroForm.controls['nome'].invalid && cadastroForm.controls['nome'].touched">
+        <small class="error">Nome é obrigatório!</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="email">E-mail:</label>
+      <input id="email" formControlName="email" type="email" />
+      <div *ngIf="cadastroForm.controls['email'].invalid && cadastroForm.controls['email'].touched">
+        <small class="error">E-mail inválido!</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="telefone">Telefone:</label>
+      <input id="telefone" formControlName="telefone" />
+    </div>
+
+    <div>
+      <label for="mensagem">Mensagem:</label>
+      <textarea id="mensagem" formControlName="mensagem"></textarea>
+      <div *ngIf="cadastroForm.controls['mensagem'].invalid && cadastroForm.controls['mensagem'].touched">
+        <small class="error">Mensagem deve ter pelo menos 10 caracteres.</small>
+      </div>
+    </div>
+
+  
+    <button type="submit" [disabled]="cadastroForm.invalid">Enviar</button>
+  </form>
+
+  <div *ngIf="submittedData">
+    <h3>Dados Enviados:</h3>
+    <p><strong>Nome:</strong> {{ submittedData.nome }}</p>
+    <p><strong>E-mail:</strong> {{ submittedData.email }}</p>
+    <p><strong>Telefone:</strong> {{ submittedData.telefone }}</p>
+    <p><strong>Mensagem:</strong> {{ submittedData.mensagem }}</p>
+  </div>
+</div>
